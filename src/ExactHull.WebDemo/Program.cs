@@ -192,6 +192,12 @@ public partial class Application
         _playground?.UpdateFrame();
     }
 
+    [JSExport]
+    public static void Resize(int width, int height)
+    {
+        SetWindowSize(width, height);
+    }
+
     public static void Main()
     {
         _playground = new Playground();
