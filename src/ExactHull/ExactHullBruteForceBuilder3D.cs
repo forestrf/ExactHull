@@ -30,9 +30,13 @@ namespace ExactHull.ExactGeometry
 
             Exact3 insidePoint = ComputeCentroid(points[i0], points[i1], points[i2], points[i3]);
 
-            Span<int> visibleFaceIndices = stackalloc int[faces.Length];
-            Span<Edge> horizonEdges = stackalloc Edge[faces.Length * 2];
-            Span<Face> newFaces = stackalloc Face[faces.Length * 2];
+            int[] visibleFaceIndicesArr = new int[faces.Length];
+            Edge[] horizonEdgesArr = new Edge[faces.Length * 2];
+            Face[] newFacesArr = new Face[faces.Length * 2];
+
+            Span<int> visibleFaceIndices = visibleFaceIndicesArr;
+            Span<Edge> horizonEdges = horizonEdgesArr;
+            Span<Face> newFaces = newFacesArr;
 
             for (int pointIndex = 0; pointIndex < points.Length; pointIndex++)
             {
