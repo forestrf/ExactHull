@@ -23,9 +23,7 @@ public sealed class BuildHullBurnTests
             InjectDuplicates(random, points);
             Shuffle(random, points);
 
-            var faces = new Face[Math.Max(64, pointCount * 8)];
-
-            bool success = ExactHullBruteForceBuilder3D.TryBuildHull(points, faces, out int faceCount);
+            bool success = ExactHullBuilder3D.TryBuildHull(points, out Face[] faces, out int faceCount);
 
             if (!success)
             {
@@ -57,9 +55,7 @@ public sealed class BuildHullBurnTests
 
             Shuffle(random, points);
 
-            var faces = new Face[Math.Max(64, pointCount * 8)];
-
-            bool success = ExactHullBruteForceBuilder3D.TryBuildHull(points, faces, out int faceCount);
+            bool success = ExactHullBuilder3D.TryBuildHull(points, out Face[] faces, out int faceCount);
 
             Assert.True(success, $"Hull build failed unexpectedly in sphere test {test}.");
             Assert.True(faceCount >= 4, $"faceCount={faceCount} in sphere test {test}");

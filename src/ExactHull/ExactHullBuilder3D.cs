@@ -323,9 +323,6 @@ namespace ExactHull.ExactGeometry
             List<HullFace> faces,
             int pointIndex)
         {
-            HullFace? bestFace = null;
-            Exact bestDistance = Exact.Zero;
-
             for (int i = 0; i < faces.Count; i++)
             {
                 HullFace face = faces[i];
@@ -335,15 +332,10 @@ namespace ExactHull.ExactGeometry
                 Exact distance = SignedDistance(points, face, pointIndex);
                 if (distance.Sign() > 0)
                 {
-                    if (bestFace is null || distance > bestDistance)
-                    {
-                        bestFace = face;
-                        bestDistance = distance;
-                    }
+                    face.OutsidePoints.Add(pointIndex);
+                    return;
                 }
             }
-
-            bestFace?.OutsidePoints.Add(pointIndex);
         }
 
         internal static bool TryFindInitialTetrahedron(

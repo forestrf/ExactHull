@@ -15,9 +15,7 @@ public sealed class BuildHullTests
             new Exact3(0.0, 1.0, 0.0),
         };
 
-        Span<Face> faces = stackalloc Face[16];
-
-        bool success = ExactHullBruteForceBuilder3D.TryBuildHull(points, faces, out int faceCount);
+        bool success = ExactHullBuilder3D.TryBuildHull(points, out Face[] faces, out int faceCount);
 
         Assert.False(success);
         Assert.Equal(0, faceCount);
@@ -35,9 +33,7 @@ public sealed class BuildHullTests
             new Exact3(0.25, 0.25, 0.0),
         };
 
-        Span<Face> faces = stackalloc Face[32];
-
-        bool success = ExactHullBruteForceBuilder3D.TryBuildHull(points, faces, out int faceCount);
+        bool success = ExactHullBuilder3D.TryBuildHull(points, out Face[] faces, out int faceCount);
 
         Assert.False(success);
         Assert.Equal(0, faceCount);
@@ -54,9 +50,7 @@ public sealed class BuildHullTests
             new Exact3(0.0, 0.0, 1.0),
         };
 
-        Span<Face> faces = stackalloc Face[16];
-
-        bool success = ExactHullBruteForceBuilder3D.TryBuildHull(points, faces, out int faceCount);
+        bool success = ExactHullBuilder3D.TryBuildHull(points, out Face[] faces, out int faceCount);
 
         Assert.True(success);
         Assert.Equal(4, faceCount);
@@ -74,9 +68,7 @@ public sealed class BuildHullTests
             new Exact3(0.1, 0.1, 0.1), // 4 interior
         };
 
-        Span<Face> faces = stackalloc Face[32];
-
-        bool success = ExactHullBruteForceBuilder3D.TryBuildHull(points, faces, out int faceCount);
+        bool success = ExactHullBuilder3D.TryBuildHull(points, out Face[] faces, out int faceCount);
 
         Assert.True(success);
         Assert.Equal(4, faceCount);
@@ -94,9 +86,7 @@ public sealed class BuildHullTests
             new Exact3(0.25, 0.25, -1.0), // 4 exterior
         };
 
-        Span<Face> faces = stackalloc Face[32];
-
-        bool success = ExactHullBruteForceBuilder3D.TryBuildHull(points, faces, out int faceCount);
+        bool success = ExactHullBuilder3D.TryBuildHull(points, out Face[] faces, out int faceCount);
 
         Assert.True(success);
         Assert.Equal(6, faceCount);
@@ -117,9 +107,7 @@ public sealed class BuildHullTests
             new Exact3(1.0, 0.0, 0.0),
         };
 
-        Span<Face> faces = stackalloc Face[32];
-
-        bool success = ExactHullBruteForceBuilder3D.TryBuildHull(points, faces, out int faceCount);
+        bool success = ExactHullBuilder3D.TryBuildHull(points, out Face[] faces, out int faceCount);
 
         Assert.True(success);
         Assert.Equal(4, faceCount);

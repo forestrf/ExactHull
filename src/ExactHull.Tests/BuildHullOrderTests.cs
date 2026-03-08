@@ -19,7 +19,6 @@ public sealed class BuildHullOrderTests
             original[i] = new Exact3(x, y, z);
         }
 
-        Face[] faceBuffer = new Face[256];
         Exact3[] shuffled = new Exact3[original.Length];
 
         for (int run = 0; run < 50; run++)
@@ -27,11 +26,11 @@ public sealed class BuildHullOrderTests
             Array.Copy(original, shuffled, original.Length);
             Shuffle(shuffled, random);
 
-            bool success = ExactHullBruteForceBuilder3D.TryBuildHull(shuffled, faceBuffer, out int faceCount);
+            bool success = ExactHullBuilder3D.TryBuildHull(shuffled, out Face[] faces, out int faceCount);
 
             Assert.True(success);
             Assert.True(faceCount >= 4);
-            Assert.True(ExactHullValidation3D.IsHullValid(shuffled, faceBuffer.AsSpan(0, faceCount)));
+            Assert.True(ExactHullValidation3D.IsHullValid(shuffled, faces.AsSpan(0, faceCount)));
         }
     }
 

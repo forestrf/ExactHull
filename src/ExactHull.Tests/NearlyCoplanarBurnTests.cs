@@ -32,9 +32,7 @@ public sealed class NearlyCoplanarBurnTests
             InjectDuplicates(random, points);
             Shuffle(random, points);
 
-            var faces = new Face[Math.Max(128, pointCount * 8)];
-
-            bool success = ExactHullBruteForceBuilder3D.TryBuildHull(points, faces, out int faceCount);
+            bool success = ExactHullBuilder3D.TryBuildHull(points, out Face[] faces, out int faceCount);
 
             Assert.True(success, $"Hull build failed in nearly-coplanar test {test}.");
             Assert.True(faceCount >= 4, $"faceCount={faceCount} in nearly-coplanar test {test}");
@@ -68,9 +66,7 @@ public sealed class NearlyCoplanarBurnTests
 
             Shuffle(random, points);
 
-            var faces = new Face[Math.Max(128, pointCount * 8)];
-
-            bool success = ExactHullBruteForceBuilder3D.TryBuildHull(points, faces, out int faceCount);
+            bool success = ExactHullBuilder3D.TryBuildHull(points, out Face[] faces, out int faceCount);
 
             Assert.True(success, $"Hull build failed in large-coordinate test {test}.");
             Assert.True(faceCount >= 4, $"faceCount={faceCount} in large-coordinate test {test}");

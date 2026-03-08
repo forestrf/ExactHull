@@ -7,7 +7,7 @@ namespace ExactHull.Tests;
 public sealed class BuildHullComparisonTests
 {
     [Fact]
-    public void OldAndNewBuildersBothProduceValidHulls()
+    public void Builder_ProducesValidHulls()
     {
         var random = new Random(424242);
 
@@ -24,11 +24,9 @@ public sealed class BuildHullComparisonTests
                     random.NextDouble() * 20.0 - 10.0);
             }
 
-            var hullA = ExactHull3D.BuildBruteForce(points);
-            var hullB = ExactHull3D.Build(points);
+            var hull = ExactHull3D.Build(points);
 
-            Assert.True(ExactHullValidation3D.IsHullValid(hullA.Points, hullA.Faces));
-            Assert.True(ExactHullValidation3D.IsHullValid(hullB.Points, hullB.Faces));
+            Assert.True(ExactHullValidation3D.IsHullValid(hull.Points, hull.Faces));
         }
     }
 }

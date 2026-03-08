@@ -119,7 +119,7 @@ canvas.emscripten {
 
     <h2>How It Works</h2>
     <ol>
-      <li><strong>Initial tetrahedron.</strong> Four non-coplanar points form the starting polytope. All remaining points are assigned to the face they are furthest above.</li>
+      <li><strong>Initial tetrahedron.</strong> Four non-coplanar points form the starting polytope. All remaining points are assigned to the first face they are above.</li>
       <li><strong>Expand.</strong> For each face with outside points, the farthest point is selected. A BFS collects all faces visible from that point, identifying the horizon boundary.</li>
       <li><strong>Replace.</strong> Visible faces are removed and replaced by new triangles connecting the horizon edges to the new point.</li>
       <li><strong>Reassign.</strong> Orphaned points are reassigned to the new faces. Points now inside the polytope are discarded.</li>
