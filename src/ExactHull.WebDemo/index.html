@@ -126,6 +126,15 @@ canvas.emscripten {
       <li><strong>Repeat</strong> until no face has outside points.</li>
     </ol>
 
+    <h2>Why Not Just Use Floating Point?</h2>
+    <p>
+      Convex hull construction is unusually sensitive to numerical precision. The algorithm repeatedly
+      asks questions like “is this point above or below that face?” or “which faces are visible from
+      this point?”. With floating-point arithmetic, nearly degenerate inputs can flip those decisions
+      because of rounding error. One wrong predicate is enough to damage the hull. ExactHull replaces
+      those fragile decisions with exact ones.
+    </p>
+    
     <h2>Why Exact Arithmetic Is Practical Here</h2>
     <p>
       Exact arithmetic works well here because the algorithm never feeds constructed coordinates back
