@@ -28,16 +28,22 @@
     }
     #github-link {
       position: fixed;
-      top: 10px;
-      right: 14px;
-      color: #aaa;
+      top: 12px;
+      right: 16px;
+      color: #fff;
+      background: #333;
       font-family: sans-serif;
       font-size: 14px;
+      font-weight: bold;
       text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: 1px solid #555;
       z-index: 1000;
+      transition: background 0.2s;
     }
     #github-link:hover {
-      color: #fff;
+      background: #555;
     }
     /* The rest of the CSS is just for the spinner */
     #spinner {
@@ -64,7 +70,7 @@
 </head>
 
 <body>
-  <a id="github-link" href="https://github.com/notgiven688/ExactHull" target="_blank">GitHub ↗</a>
+  <a id="github-link" href="https://github.com/notgiven688/ExactHull" target="_blank">⭐ View on GitHub</a>
   <div id="canvas_wrapper">
     <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
     <!-- Spinner is removed when .NET is loaded -->

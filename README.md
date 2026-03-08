@@ -1,4 +1,10 @@
+<p align="center">
+  <img src="media/logo_small.png" alt="ExactHull" width="240">
+</p>
+
 # ExactHull — Exact 3D Convex Hull in C#
+
+A robust 3D convex hull library using exact arithmetic. No floating-point epsilon hacks — geometric predicates are computed exactly using a dyadic rational representation backed by `BigInteger`.
 
 ### 🌐 [**Try the Interactive Web Demo →**](https://notgiven688.github.io/ExactHull/)
 
@@ -10,9 +16,6 @@ The central conclusion (in a very ChatGPT tone):
 > **Exact 3D convex hull construction is practical, not just theoretical.**
 
 ---
-
-A robust 3D convex hull library using exact arithmetic. No floating-point epsilon hacks — geometric predicates are computed exactly using a dyadic rational representation backed by `BigInteger`.
-
 ## Quick Start
 
 ```csharp

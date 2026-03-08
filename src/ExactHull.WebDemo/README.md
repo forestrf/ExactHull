@@ -37,6 +37,5 @@ dotnet serve --mime .wasm=application/wasm --mime .js=text/javascript --mime .js
 
 ## Controls
 
-- **G** (or touch): Generate new random points
-- **H**: Build convex hull from current points
+- **G** (or touch/click): Generate new random points and build convex hull
 - Mouse drag: Orbit camera

@@ -14,10 +14,12 @@
     <RepositoryUrl>https://github.com/notgiven688/ExactHull</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>convex-hull;exact-arithmetic;geometry;3d</PackageTags>
+    <PackageIcon>logo_nuget.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\media\logo_nuget.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>

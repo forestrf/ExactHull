@@ -65,7 +65,7 @@ public class Playground
         points.Clear();
         hull = null;
 
-        int count = 20_000;
+        int count = rng.Next(20, 121);
         for (int i = 0; i < count; i++)
         {
             double x = (rng.NextDouble() - 0.5) * 4.0;
