@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          dotnet-quality: 'preview'
+
+      - name: Restore
+        run: dotnet restore src/ExactHull.Tests/ExactHull.Tests.csproj
+
+      - name: Build
+        run: dotnet build src/ExactHull.Tests/ExactHull.Tests.csproj --no-restore
+
+      - name: Test
+        run: dotnet test src/ExactHull.Tests/ExactHull.Tests.csproj --no-build --verbosity normal

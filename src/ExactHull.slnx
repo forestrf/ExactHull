@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ExactHull.Tests/ExactHull.Tests.csproj" />
+  <Project Path="ExactHull/ExactHull.csproj" />
+  <Project Path="ExactHull.Demo/ExactHull.Demo.csproj" />
+  <Project Path="ExactHull.WebDemo/ExactHull.WebDemo.csproj" />
+</Solution>
