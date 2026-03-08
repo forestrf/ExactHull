@@ -50,13 +50,13 @@ Every IEEE-754 `double` is imported as an exact dyadic value of the form `mantis
 
 The algorithm builds the convex hull incrementally:
 
-1. **Initial polytope.** Four non-coplanar points are selected to form an initial tetrahedron. All remaining points are assigned to the first face they are above (the *outside set*).
+1. **Initial polytope.** Four non-coplanar points are selected to form an initial tetrahedron. Each remaining point is assigned to a face it lies above (the *outside set*).
 
 2. **Expand the polytope.** For each face that has an outside set, the farthest point is selected. A BFS from that face along face adjacencies collects all faces visible from the point, identifying the *horizon* — the boundary between visible and non-visible faces.
 
 3. **Replace visible faces.** The visible faces are removed and replaced by new triangular faces connecting the horizon edges to the new point, forming a cone. The new faces are linked to each other and to the surviving neighbors across the horizon.
 
-4. **Reassign points.** Points from the removed faces' outside sets are reassigned to the first new face they lie above. Points now inside the polytope are discarded.
+4. **Reassign points.** Points from the removed faces' outside sets are each reassigned to a new face they lie above. Points now inside the polytope are discarded.
 
 5. **Repeat** until no face has any outside points remaining.
 
