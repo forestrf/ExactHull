@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Globalization;
 using ExactHull;
 
-int[] sizes = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 15000, 20000, 25000];
+int[] sizes = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 15000, 20000, 25000, 30000, 40000];
 const int runsPerSize = 10;
 const int warmupRuns = 2;
 
