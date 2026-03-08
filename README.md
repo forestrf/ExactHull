@@ -16,6 +16,8 @@ This project started from the hunch that a convex hull algorithm could be made r
 The central conclusion (in a very ChatGPT tone):
 > **Exact 3D convex hull construction is practical, not just theoretical.**
 
+In its current form, the project is aimed primarily at small to medium-sized point clouds, where exactness and robustness matter more than absolute peak throughput.
+
 ---
 ## Quick Start
 
