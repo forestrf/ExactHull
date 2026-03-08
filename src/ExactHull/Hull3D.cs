@@ -73,7 +73,18 @@ public static class ExactHull3D
         ArgumentNullException.ThrowIfNull(points);
         return Build((IReadOnlyList<(double X, double Y, double Z)>)points);
     }
-    
+
+    public static Hull3D Build<T>(IReadOnlyList<T> points, Func<T, (double X, double Y, double Z)> selector)
+    {
+        ArgumentNullException.ThrowIfNull(points);
+        ArgumentNullException.ThrowIfNull(selector);
+
+        var tuples = new (double X, double Y, double Z)[points.Count];
+        for (int i = 0; i < points.Count; i++)
+            tuples[i] = selector(points[i]);
+
+        return Build((IReadOnlyList<(double X, double Y, double Z)>)tuples);
+    }
 
 #if !EXCLUDE_BRUTE_FORCE
     public static Hull3D BuildBruteForce(IReadOnlyList<Exact3> points)
