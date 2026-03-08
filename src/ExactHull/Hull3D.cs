@@ -82,6 +82,7 @@ public static class ExactHull3D
     /// <param name="points">At least 4 non-coplanar points.</param>
     /// <returns>The convex hull.</returns>
     /// <exception cref="InvalidOperationException">Thrown if fewer than 4 points are given or all points are coplanar.</exception>
+    /// <exception cref="ArgumentException">Thrown if any coordinate is NaN or Infinity.</exception>
     public static Hull3D Build(IReadOnlyList<(double X, double Y, double Z)> points)
     {
         ArgumentNullException.ThrowIfNull(points);
@@ -111,6 +112,7 @@ public static class ExactHull3D
     /// <param name="selector">A function that extracts <c>(X, Y, Z)</c> coordinates from each point.</param>
     /// <returns>The convex hull.</returns>
     /// <exception cref="InvalidOperationException">Thrown if fewer than 4 points are given or all points are coplanar.</exception>
+    /// <exception cref="ArgumentException">Thrown if any coordinate is NaN or Infinity.</exception>
     public static Hull3D Build<T>(IReadOnlyList<T> points, Func<T, (double X, double Y, double Z)> selector)
     {
         ArgumentNullException.ThrowIfNull(points);
