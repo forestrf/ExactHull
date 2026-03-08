@@ -265,8 +265,7 @@ namespace ExactHull.ExactGeometry
         private static void TryLink(HullFace a, HullFace b)
         {
             // Find a shared edge (appears in opposite winding).
-            int[] aVerts = { a.A, a.B, a.C };
-            int[] bVerts = { b.A, b.B, b.C };
+            Span<int> aVerts = stackalloc int[] { a.A, a.B, a.C };
 
             for (int ai = 0; ai < 3; ai++)
             {
