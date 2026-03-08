@@ -6,7 +6,6 @@
     <Nullable>enable</Nullable>
 
     <PackageId>ExactHull</PackageId>
-    <Version>0.1.0</Version>
     <Authors>notgiven688</Authors>
     <Description>Exact 3D convex hull construction using exact arithmetic — no floating-point robustness hacks.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -26,8 +25,8 @@
     <InternalsVisibleTo Include="ExactHull.Tests" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(ExcludeBruteForce)' != 'true'">
-    <DefineConstants>$(DefineConstants);INCLUDE_BRUTE_FORCE</DefineConstants>
+  <PropertyGroup Condition="'$(ExcludeBruteForce)' == 'true'">
+    <DefineConstants>$(DefineConstants);EXCLUDE_BRUTE_FORCE</DefineConstants>
   </PropertyGroup>
 
 </Project>

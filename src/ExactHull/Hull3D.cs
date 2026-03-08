@@ -75,7 +75,7 @@ public static class ExactHull3D
     }
     
 
-#if INCLUDE_BRUTE_FORCE
+#if !EXCLUDE_BRUTE_FORCE
     public static Hull3D BuildBruteForce(IReadOnlyList<Exact3> points)
     {
         ArgumentNullException.ThrowIfNull(points);

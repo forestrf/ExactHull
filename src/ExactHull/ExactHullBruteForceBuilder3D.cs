@@ -2,7 +2,7 @@
 // (c) Thorben Linneweber
 // SPDX-License-Identifier: MIT
 
-#if INCLUDE_BRUTE_FORCE
+#if !EXCLUDE_BRUTE_FORCE
 using System;
 
 namespace ExactHull.ExactGeometry
