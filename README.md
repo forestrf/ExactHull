@@ -7,6 +7,7 @@
 A robust 3D convex hull library using exact arithmetic. No floating-point epsilon hacks — geometric predicates are computed exactly using a dyadic rational representation backed by `BigInteger`.
 
 ### 🌐 [**Try the Interactive Web Demo →**](https://notgiven688.github.io/ExactHull/)
+### 📦 [**NuGet Package →**](https://www.nuget.org/packages/ExactHull)
 
 ## Disclaimer
 
@@ -30,6 +31,13 @@ var hull = ExactHull3D.Build(
 
 foreach (var face in hull.Faces)
     Console.WriteLine($"{face.A}, {face.B}, {face.C}");
+```
+
+Use the generic overload to pass any custom point type:
+
+```csharp
+List<Vector3> myPoints = ...;
+var hull = ExactHull3D.Build(myPoints, v => (v.X, v.Y, v.Z));
 ```
 
 ## How It Works
