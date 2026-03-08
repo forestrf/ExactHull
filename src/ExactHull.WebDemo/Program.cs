@@ -178,8 +178,6 @@ public class Playground
         if (hull != null)
             DrawText($"Hull faces: {hull.Faces.Length}", 10, 60, 20, Color.RayWhite);
 
-        DrawText("G (or touch): Generate random hull", 10, 560, 16, Color.RayWhite);
-
         EndDrawing();
     }
 }

@@ -11,15 +11,19 @@
   <style>
     html, body {
       margin: 0;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      min-height: 100%;
       background: #222;
+      color: #ddd;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    #page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px 16px;
     }
     div#canvas_wrapper {
-      width: 800px;
-      height: 600px;
+      width: 100%;
+      aspect-ratio: 800 / 600;
       padding: 0;
     }
     canvas.emscripten {
@@ -45,6 +49,13 @@
     #github-link:hover {
       background: #555;
     }
+    h1 { color: #fff; font-size: 1.6em; margin: 24px 0 8px; }
+    h2 { color: #ccc; font-size: 1.2em; margin: 20px 0 8px; }
+    p, li { line-height: 1.6; color: #bbb; font-size: 0.95em; }
+    a { color: #5ba8f5; }
+    code { background: #333; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+    ol { padding-left: 20px; }
+    .hint { color: #888; font-size: 0.85em; margin-top: 8px; }
     /* The rest of the CSS is just for the spinner */
     #spinner {
       position: absolute;
@@ -71,10 +82,37 @@
 
 <body>
   <a id="github-link" href="https://github.com/notgiven688/ExactHull" target="_blank">⭐ View on GitHub</a>
-  <div id="canvas_wrapper">
-    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
-    <!-- Spinner is removed when .NET is loaded -->
-    <div id="spinner"><div id="spinner_animation"></div></div>
+  <div id="page">
+    <div id="canvas_wrapper">
+      <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+      <!-- Spinner is removed when .NET is loaded -->
+      <div id="spinner"><div id="spinner_animation"></div></div>
+    </div>
+    <p class="hint">Press <strong>G</strong> or tap to generate a new random hull.</p>
+
+    <h1>ExactHull — Exact 3D Convex Hull</h1>
+    <p>
+      A robust convex hull library that uses <strong>exact arithmetic</strong> instead of
+      floating-point epsilon hacks. Every IEEE-754 <code>double</code> is imported as an exact
+      dyadic value (<code>mantissa × 2<sup>exp</sup></code> backed by <code>BigInteger</code>),
+      and all geometric predicates are computed without rounding.
+    </p>
+
+    <h2>How It Works</h2>
+    <ol>
+      <li><strong>Initial tetrahedron.</strong> Four non-coplanar points form the starting polytope. All remaining points are assigned to the face they are furthest above.</li>
+      <li><strong>Expand.</strong> For each face with outside points, the farthest point is selected. A BFS collects all faces visible from that point, identifying the horizon boundary.</li>
+      <li><strong>Replace.</strong> Visible faces are removed and replaced by new triangles connecting the horizon edges to the new point.</li>
+      <li><strong>Reassign.</strong> Orphaned points are reassigned to the new faces. Points now inside the polytope are discarded.</li>
+      <li><strong>Repeat</strong> until no face has outside points.</li>
+    </ol>
+
+    <h2>Why Exact Arithmetic Is Practical Here</h2>
+    <p>
+      Exact arithmetic works well here because the algorithm never feeds constructed coordinates back
+      into later geometry calculations. It only evaluates predicates on the original input points, so
+      intermediate exact values stay bounded rather than growing with scene complexity.
+    </p>
   </div>
 
   <script type="module" src="./main.js"></script>
