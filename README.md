@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="media/logo_small.png" alt="ExactHull" width="240">
+  <img src="https://raw.githubusercontent.com/notgiven688/ExactHull/main/media/logo_small.png" alt="ExactHull" width="240">
 </p>
 
 # ExactHull — Exact 3D Convex Hull in C#
