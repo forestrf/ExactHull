@@ -6,10 +6,17 @@ using System;
 
 namespace ExactHull.ExactGeometry
 {
+    /// <summary>
+    /// A triangular face of the convex hull, defined by three vertex indices
+    /// into <see cref="Hull3D.Points"/>.
+    /// </summary>
     public struct Face
     {
+        /// <summary>Index of the first vertex.</summary>
         public int A;
+        /// <summary>Index of the second vertex.</summary>
         public int B;
+        /// <summary>Index of the third vertex.</summary>
         public int C;
 
         public Face(int a, int b, int c)
