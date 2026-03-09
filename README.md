@@ -84,6 +84,11 @@ Tested on tetrahedra, cubes, octahedra, duplicate points, interior points, rando
 
 ## Benchmarks
 
+Two point distributions are benchmarked:
+
+- **Cube interior** — points uniformly distributed inside a cube. Most points are not on the hull.
+- **Sphere surface** — points uniformly distributed on the unit sphere. All points lie on the hull.
+
 ![Benchmark](media/benchmark_plot.png)
 
 To reproduce:
