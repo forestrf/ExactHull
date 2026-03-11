@@ -17,12 +17,17 @@ namespace ExactHull.ExactGeometry
     /// </summary>
     public readonly struct Exact : IEquatable<Exact>, IComparable<Exact>
     {
+        /// <summary>The mantissa of the dyadic rational. Value = Mantissa × 2^Exponent.</summary>
         public BigInteger Mantissa { get; }
+        /// <summary>The binary exponent. Value = Mantissa × 2^Exponent.</summary>
         public int Exponent { get; }
 
+        /// <summary>The additive identity (0).</summary>
         public static Exact Zero => new(BigInteger.Zero, 0);
+        /// <summary>The multiplicative identity (1).</summary>
         public static Exact One => new(BigInteger.One, 0);
 
+        /// <summary>Creates an exact value from a mantissa and binary exponent.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Exact(BigInteger mantissa, int exponent)
         {
@@ -31,12 +36,18 @@ namespace ExactHull.ExactGeometry
             Exponent = exponent;
         }
 
+        /// <summary>Creates an exact value from an integer.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Exact(int value) : this(new BigInteger(value), 0) { }
 
+        /// <summary>Creates an exact value from a long.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Exact(long value) : this(new BigInteger(value), 0) { }
-        
+
+        /// <summary>
+        /// Attempts to convert this exact value back to a double.
+        /// Returns <c>false</c> if the value overflows or is not representable.
+        /// </summary>
         public bool TryToDouble(out double value)
         {
             if (Mantissa.IsZero)
@@ -83,6 +94,11 @@ namespace ExactHull.ExactGeometry
                 : $"{Mantissa} * 2^{Exponent}";
         }
 
+        /// <summary>
+        /// Converts an IEEE-754 double to its exact dyadic rational representation.
+        /// Every finite double can be represented exactly.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown if <paramref name="value"/> is NaN or Infinity.</exception>
         public static Exact FromDouble(double value)
         {
             if (double.IsNaN(value) || double.IsInfinity(value))
@@ -121,24 +137,28 @@ namespace ExactHull.ExactGeometry
             return new Exact(mantissa, exponent);
         }
 
+        /// <summary>Returns −1, 0, or 1 indicating the sign of this value.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public int Sign()
         {
             return Mantissa.Sign;
         }
 
+        /// <summary>Returns <c>true</c> if this value is exactly zero.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool IsZero()
         {
             return Mantissa.IsZero;
         }
 
+        /// <summary>Returns the absolute value.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Exact Abs()
         {
             return Mantissa.Sign >= 0 ? this : new Exact(BigInteger.Abs(Mantissa), Exponent);
         }
 
+        /// <inheritdoc />
         public int CompareTo(Exact other)
         {
             if (Mantissa.Sign != other.Mantissa.Sign)
@@ -171,9 +191,11 @@ namespace ExactHull.ExactGeometry
             return HashCode.Combine(Mantissa, Exponent);
         }
 
+        /// <summary>
+        /// Converts this exact value to a double (lossy). Intended for debugging and inspection.
+        /// </summary>
         public double ToDouble()
         {
-            // Only for debugging / inspection.
             return (double)Mantissa * Math.Pow(2.0, Exponent);
         }
 

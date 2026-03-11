@@ -9,7 +9,7 @@ namespace ExactHull.ExactGeometry
 {
     internal static class ExactHullBuilder3D
     {
-        public static bool TryBuildHull(
+        internal static bool TryBuildHull(
             ReadOnlySpan<Exact3> points,
             out Face[] faces,
             out int faceCount)

@@ -6,7 +6,7 @@ using System;
 
 namespace ExactHull.ExactGeometry
 {
-    public static class ExactHullValidation3D
+    internal static class ExactHullValidation3D
     {
         /// <summary>
         /// Validates that the given faces form a correct convex hull over the point set.

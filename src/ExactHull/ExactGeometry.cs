@@ -4,7 +4,7 @@
 
 namespace ExactHull.ExactGeometry
 {
-    public static class ExactGeometry3D
+    internal static class ExactGeometry3D
     {
         public static Exact Dot(Exact3 a, Exact3 b)
         {

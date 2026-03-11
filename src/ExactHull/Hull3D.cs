@@ -23,6 +23,7 @@ public sealed class Hull3D
     /// </summary>
     public Face[] Faces { get; }
 
+    /// <summary>Creates a hull result from the given points and faces.</summary>
     public Hull3D(Exact3[] points, Face[] faces)
     {
         Points = points ?? throw new ArgumentNullException(nameof(points));

@@ -19,6 +19,7 @@ namespace ExactHull.ExactGeometry
         /// <summary>Index of the third vertex.</summary>
         public int C;
 
+        /// <summary>Creates a face from three vertex indices.</summary>
         public Face(int a, int b, int c)
         {
             A = a;
@@ -27,7 +28,7 @@ namespace ExactHull.ExactGeometry
         }
     }
 
-    public readonly struct Edge
+    internal readonly struct Edge
     {
         public int A { get; }
         public int B { get; }
@@ -39,7 +40,7 @@ namespace ExactHull.ExactGeometry
         }
     }
 
-    public static class ExactHullTopology3D
+    internal static class ExactHullTopology3D
     {
         public static bool IsFaceVisible(
             ReadOnlySpan<Exact3> points,
