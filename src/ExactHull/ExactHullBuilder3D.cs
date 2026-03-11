@@ -204,9 +204,18 @@ namespace ExactHull.ExactGeometry
             // Use a simple list-based lookup since the fan is typically small.
             // For each apex edge, the "other" vertex (not apex) identifies the pair.
 
-            Span<int> pendingVertex = stackalloc int[newFaces.Count * 2];
-            Span<int> pendingFaceIdx = stackalloc int[newFaces.Count * 2];
-            Span<int> pendingEdgeIdx = stackalloc int[newFaces.Count * 2];
+            const int stackAllocThreshold = 256;
+            int pendingSize = newFaces.Count * 2;
+
+            Span<int> pendingVertex = pendingSize <= stackAllocThreshold
+                ? stackalloc int[stackAllocThreshold]
+                : new int[pendingSize];
+            Span<int> pendingFaceIdx = pendingSize <= stackAllocThreshold
+                ? stackalloc int[stackAllocThreshold]
+                : new int[pendingSize];
+            Span<int> pendingEdgeIdx = pendingSize <= stackAllocThreshold
+                ? stackalloc int[stackAllocThreshold]
+                : new int[pendingSize];
             int pendingCount = 0;
 
             for (int fi = 0; fi < newFaces.Count; fi++)
